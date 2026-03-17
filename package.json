@@ -9,7 +9,7 @@
     "import:posts": "node scripts/import-hardcoded-posts.cjs",
     "import:posts:dry": "node scripts/import-hardcoded-posts.cjs --dry-run",
     "develop": "node scripts/sync-schemas.cjs && strapi develop",
-    "start": "node scripts/sync-schemas.cjs && strapi start",
+    "start": "node scripts/sync-schemas.cjs && node scripts/fix-admin-backend-url.cjs && strapi start",
     "build": "tsc -p tsconfig.json && node scripts/sync-schemas.cjs && strapi build",
     "strapi": "strapi"
   },
