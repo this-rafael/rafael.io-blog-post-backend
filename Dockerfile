@@ -23,7 +23,6 @@ RUN apk add --no-cache python3 make g++ && \
 COPY package.json pnpm-lock.yaml* ./
 RUN pnpm install --frozen-lockfile --prod || pnpm install --prod
 
-COPY --from=builder /app/build ./build
 COPY --from=builder /app/dist ./dist
 COPY config ./config
 COPY src ./src
