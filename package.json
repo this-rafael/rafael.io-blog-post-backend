@@ -10,7 +10,7 @@
     "import:posts:dry": "node scripts/import-hardcoded-posts.cjs --dry-run",
     "develop": "node scripts/sync-schemas.cjs && strapi develop",
     "start": "node scripts/sync-schemas.cjs && strapi start",
-    "build": "strapi build",
+    "build": "tsc -p tsconfig.json && node scripts/sync-schemas.cjs && strapi build",
     "strapi": "strapi"
   },
   "devDependencies": {
