@@ -1,0 +1,43 @@
+{
+  "name": "rafael.io-blog-post-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Strapi 4 headless CMS for rafael.io",
+  "scripts": {
+    "setup": "node setup.js",
+    "sync-schemas": "node scripts/sync-schemas.cjs",
+    "import:posts": "node scripts/import-hardcoded-posts.cjs",
+    "import:posts:dry": "node scripts/import-hardcoded-posts.cjs --dry-run",
+    "develop": "node scripts/sync-schemas.cjs && strapi develop",
+    "start": "node scripts/sync-schemas.cjs && strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {
+    "@strapi/typescript-utils": "^4.25.0"
+  },
+  "dependencies": {
+    "@strapi/plugin-users-permissions": "^4.25.0",
+    "@strapi/strapi": "^4.25.0",
+    "better-sqlite3": "^11.10.0",
+    "gray-matter": "^4.0.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.2.1",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "packageManager": "pnpm@10.6.5",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "sharp",
+      "esbuild",
+      "@swc/core"
+    ]
+  }
+}
