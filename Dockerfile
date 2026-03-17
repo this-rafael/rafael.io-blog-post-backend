@@ -21,20 +21,22 @@ RUN apk add --no-cache python3 make g++ && \
     npm install -g pnpm
 
 COPY package.json pnpm-lock.yaml* ./
-RUN pnpm install --frozen-lockfile --prod || pnpm install --prod
+RUN pnpm install --frozen-lockfile || pnpm install
 
 COPY --from=builder /app/dist ./dist
+COPY tsconfig.json ./
 COPY config ./config
 COPY src ./src
 COPY database ./database
 COPY public ./public
+COPY scripts ./scripts
 
 RUN mkdir -p /data/uploads
 
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
 
 EXPOSE 1337
 
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["node_modules/.bin/strapi", "start"]
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
+CMD ["pnpm", "start"]
